@@ -15,8 +15,12 @@ class Stack:
         return len(self._items)
     def clear(self):
         return self._items.clear()
+    def is_empty(self):
+        if len(self._items) == 0:
+            return True
+        else:
+            return False
     def __str__(self):
         return str(self._items)
-
 # print(my_stack)
 # print(dir(my_stack))
