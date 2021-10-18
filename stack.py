@@ -13,4 +13,10 @@ class Stack:
         return self._items[-1]
     def size(self):
         return len(self._items)
-    # def clear(self):
+    def clear(self):
+        return self._items.clear()
+    def __str__(self):
+        return str(self._items)
+
+# print(my_stack)
+# print(dir(my_stack))
