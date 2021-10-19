@@ -25,6 +25,8 @@ def in2post(expr):
             while top_token != "(":
                 postfix_list.append(top_token)
                 top_token = op_stack.pop()
+        elif token == " ":
+            continue
         else:
             while (not op_stack.is_empty()) and (prec[op_stack.top()] >= prec[token]):
                 postfix_list.append(op_stack.pop())
