@@ -36,17 +36,44 @@ def in2post(expr):
         postfix_list.append(op_stack.pop())
 
     result = " ".join(postfix_list)
-    print(f"postfix: {result}\n")
+    print(f"postfix: {result}")
     return result
+def eval_postfix(postfix_expr):
+    if postfix_expr is None:
+        raise ValueError("No expression detected")
+    operand_stack = Stack()
+    token_list = postfix_expr.split()
+
+    for token in token_list:
+        if token == "-+":
+            raise SyntaxError("invalid syntax")
+        if token in "0123456789":
+            operand_stack.push(float(token))
+        else:
+            operand2 = operand_stack.pop()
+            operand1 = operand_stack.pop()
+            result = do_math(token, operand1, operand2)
+            operand_stack.push(result)
+    return operand_stack.pop()
+
+def do_math(op, op1, op2):
+    if op =="*":
+        return op1 * op2
+    elif op == "/":
+        return op1 / op2
+    elif op == "+":
+        return op1 + op2
+    else:
+        return op1 - op2
 def main():
-    expression_stack = Stack()
     print(read_file())
-    #print(in2post())
-    expression_list = read_file()
-    for i in expression_list:
-        expression = i.strip().split(',')
-        #expression_stack.push(expression)
-        in2post(expression)
+    print(eval_postfix("7 9 * 7 + 5 6 * - 3 + 4 -+"))
+    # expression_list = read_file()
+    # for i in expression_list:
+    #     expression = i.strip().split(',')
+    #     #expression_stack.push(expression)
+    #     new_expr = in2post(expression)
+    #     print(f"answer: {eval_postfix(new_expr)}\n")
     #print(expression_stack)
 
 if __name__ == "__main__":
