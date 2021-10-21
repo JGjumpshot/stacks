@@ -16,8 +16,9 @@ def in2post(expr):
     }
     op_stack = Stack()
     postfix_list = []
-    token_list = expr[0]
+    token_list = expr
     print(f"infix: {token_list}")
+    # print(token_list)
     for token in token_list:
         if token in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" or token in "0123456789":
             postfix_list.append(token)
@@ -29,7 +30,7 @@ def in2post(expr):
                 postfix_list.append(top_token)
                 top_token = op_stack.pop()
         elif token == " ":
-            continue
+            pass
         else:
             while (not op_stack.is_empty()) and (prec[op_stack.top()] >= prec[token]):
                 postfix_list.append(op_stack.pop())
@@ -38,6 +39,7 @@ def in2post(expr):
         postfix_list.append(op_stack.pop())
 
     result = " ".join(postfix_list)
+    print(type(result))
     print(f"postfix: {result}")
     return result
 def eval_postfix(postfix_expr):
@@ -46,10 +48,10 @@ def eval_postfix(postfix_expr):
         raise ValueError("No expression detected")
     operand_stack = Stack()
     token_list = postfix_expr.split()
-
+    print(token_list)
     for token in token_list:
-        if token == "-+":
-            raise SyntaxError("invalid syntax")
+        # if len(token) > 1:
+        #     raise SyntaxError("invalid syntax")
         if token in "0123456789":
             operand_stack.push(float(token))
         else:
@@ -71,15 +73,13 @@ def do_math(op, op1, op2):
         return op1 - op2
 def main():
     """main function"""
-    print(read_file())
-    # print(eval_postfix("7 9 * 7 + 5 6 * - 3 + 4 -+"))
     expression_list = read_file()
     for i in expression_list:
         expression = i.strip().split(',')
-        #expression_stack.push(expression)
-        new_expr = in2post(expression)
+        expression = " ".join(expression)
+        new_expr = in2post(str(expression))
         print(f"answer: {eval_postfix(new_expr)}\n")
-    #print(expression_stack)
+        
 
 if __name__ == "__main__":
     main()

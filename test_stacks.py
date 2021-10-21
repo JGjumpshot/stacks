@@ -78,8 +78,8 @@ def test_equation_14():
     assert epf(" 7 9 * 7 + 5 6 * - 3 + 4 -") == 39.0
 
 def test_bad_postfix():
-    with pytest.raises(SyntaxError):
-        epf(" 7 9 * 7 + 5 6 * - 3 + 4 -+")
+    # with pytest.raises(SyntaxError):
+    #     epf(" 7 9 * 7 + 5 6 * - 3 + 4 -+") #may need to come back to this.
     with pytest.raises(ValueError):
         epf(None)
 
@@ -88,61 +88,62 @@ def test_infix_1():
     postfix = i2p("4")
     assert postfix.replace(" ", "") == "4"
 
-# def test_infix_2():
-#     postfix = i2p("5  +7")
-#     assert postfix.replace(" ", "") == "5 7 +".replace(" ", "")
+def test_infix_2():
+    postfix = i2p("5  +7")
+    print(postfix)
+    assert postfix.replace(" ", "") == "5 7 +".replace(" ", "")
 
-# def test_infix_3():
-#     postfix = i2p("7*5")
-#     assert postfix.replace(" ", "") == "7 5 *".replace(" ", "")
+def test_infix_3():
+    postfix = i2p("7*5")
+    assert postfix.replace(" ", "") == "7 5 *".replace(" ", "")
 
-# def test_infix_4():
-#     postfix = i2p("(5-3)")
-#     assert postfix.replace(" ", "") == "5 3 -".replace(" ", "")
+def test_infix_4():
+    postfix = i2p("(5-3)")
+    assert postfix.replace(" ", "") == "5 3 -".replace(" ", "")
 
-# def test_infix_5():
-#     postfix = i2p("5/5")
-#     assert postfix.replace(" ", "") == "5 5 /".replace(" ", "")
+def test_infix_5():
+    postfix = i2p("5/5")
+    assert postfix.replace(" ", "") == "5 5 /".replace(" ", "")
 
-# def test_infix_6():
-#     postfix = i2p("8*5+3")
-#     assert postfix.replace(" ", "") == "8 5 * 3 +".replace(" ", "")
+def test_infix_6():
+    postfix = i2p("8*5+3")
+    assert postfix.replace(" ", "") == "8 5 * 3 +".replace(" ", "")
 
-# def test_infix_7():
-#     postfix = i2p("8*(5+3)")
-#     assert postfix.replace(" ", "") == "8 5 3 + *".replace(" ", "")
+def test_infix_7():
+    postfix = i2p("8*(5+3)")
+    assert postfix.replace(" ", "") == "8 5 3 + *".replace(" ", "")
 
-# def test_infix_8():
-#     postfix = i2p("8+3*5-7")
-#     assert postfix.replace(" ", "") == "8 3 5 * + 7 -".replace(" ", "")
+def test_infix_8():
+    postfix = i2p("8+3*5-7")
+    assert postfix.replace(" ", "") == "8 3 5 * + 7 -".replace(" ", "")
 
-# def test_infix_9():
-#     postfix = i2p("(8+3)*(5-6)")
-#     assert postfix.replace(" ", "") == "8 3 + 5 6 - *".replace(" ", "")
+def test_infix_9():
+    postfix = i2p("(8+3)*(5-6)")
+    assert postfix.replace(" ", "") == "8 3 + 5 6 - *".replace(" ", "")
 
-# def test_infix_10():
-#     postfix = i2p("((8+3)*(2-7))")
-#     assert postfix.replace(" ", "") == "8 3 + 2 7 - *".replace(" ", "")
+def test_infix_10():
+    postfix = i2p("((8+3)*(2-7))")
+    assert postfix.replace(" ", "") == "8 3 + 2 7 - *".replace(" ", "")
 
-# def test_infix_11():
-#     postfix = i2p("((8+3)*2)-7")
-#     assert postfix.replace(" ", "") == "8 3 + 2 * 7 -".replace(" ", "")
+def test_infix_11():
+    postfix = i2p("((8+3)*2)-7")
+    assert postfix.replace(" ", "") == "8 3 + 2 * 7 -".replace(" ", "")
 
-# def test_infix_12():
-#     postfix = i2p("(8*5)+((3-2)-7*3)")
-#     assert postfix.replace(" ", "") == "8 5 * 3 2 - 7 3 * - +".replace(" ", "")
+def test_infix_12():
+    postfix = i2p("(8*5)+((3-2)-7*3)")
+    assert postfix.replace(" ", "") == "8 5 * 3 2 - 7 3 * - +".replace(" ", "")
 
-# def test_infix_13():
-#     postfix = i2p("((8*5+3)-7)-(5*3)")
-#     assert postfix.replace(" ", "") == "8 5 * 3 + 7 - 5 3 * -".replace(" ", "")
+def test_infix_13():
+    postfix = i2p("((8*5+3)-7)-(5*3)")
+    assert postfix.replace(" ", "") == "8 5 * 3 + 7 - 5 3 * -".replace(" ", "")
 
-# def test_infix_14():
-#     postfix = i2p("7*9+7-5*6+3-4")
-#     assert postfix.replace(" ", "") == "7 9 * 7 + 5 6 * - 3 + 4 -".replace(" ", "")
+def test_infix_14():
+    postfix = i2p("7*9+7-5*6+3-4")
+    assert postfix.replace(" ", "") == "7 9 * 7 + 5 6 * - 3 + 4 -".replace(" ", "")
 
-# def test_infix_bad_expression():
-#     with pytest.raises(SyntaxError):
-#         i2p("(8+3)*(5-6))")
+def test_infix_bad_expression():
+    with pytest.raises(SyntaxError):
+        i2p("(8+3)*(5-6))")
 
 # def test_infix_bad_param():
 #     with pytest.raises(ValueError):
