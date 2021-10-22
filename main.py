@@ -1,4 +1,5 @@
 """stack module"""
+import pytest
 from stack import Stack
 def read_file():
     """read file function"""
@@ -18,7 +19,8 @@ def in2post(expr):
     postfix_list = []
     token_list = expr
     print(f"infix: {token_list}")
-    # print(token_list)
+    if expr is None:
+        raise ValueError('invalid infix expression')
     for token in token_list:
         if token in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" or token in "0123456789":
             postfix_list.append(token)
@@ -28,7 +30,11 @@ def in2post(expr):
             top_token = op_stack.pop()
             while top_token != "(":
                 postfix_list.append(top_token)
-                top_token = op_stack.pop()
+                try:
+                    top_token = op_stack.pop()
+                except:
+                    raise SyntaxError('Invalid syntax')
+
         elif token == " ":
             pass
         else:
@@ -39,7 +45,6 @@ def in2post(expr):
         postfix_list.append(op_stack.pop())
 
     result = " ".join(postfix_list)
-    print(type(result))
     print(f"postfix: {result}")
     return result
 def eval_postfix(postfix_expr):
@@ -48,7 +53,6 @@ def eval_postfix(postfix_expr):
         raise ValueError("No expression detected")
     operand_stack = Stack()
     token_list = postfix_expr.split()
-    print(token_list)
     for token in token_list:
         # if len(token) > 1:
         #     raise SyntaxError("invalid syntax")
@@ -63,6 +67,8 @@ def eval_postfix(postfix_expr):
 
 def do_math(op, op1, op2):
     """do math function"""
+    if len(op) > 1:
+        raise SyntaxError('invalid syntax')
     if op =="*":
         return op1 * op2
     elif op == "/":

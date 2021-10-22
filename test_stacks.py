@@ -78,8 +78,8 @@ def test_equation_14():
     assert epf(" 7 9 * 7 + 5 6 * - 3 + 4 -") == 39.0
 
 def test_bad_postfix():
-    # with pytest.raises(SyntaxError):
-    #     epf(" 7 9 * 7 + 5 6 * - 3 + 4 -+") #may need to come back to this.
+    with pytest.raises(SyntaxError):
+        epf(" 7 9 * 7 + 5 6 * - 3 + 4 -+") #may need to come back to this.
     with pytest.raises(ValueError):
         epf(None)
 
@@ -145,14 +145,14 @@ def test_infix_bad_expression():
     with pytest.raises(SyntaxError):
         i2p("(8+3)*(5-6))")
 
-# def test_infix_bad_param():
-#     with pytest.raises(ValueError):
-#         i2p(None)
+def test_infix_bad_param():
+    with pytest.raises(ValueError):
+        i2p(None)
 
-# def test_code_quality():
-#     from pylint.lint import Run
+def test_code_quality():
+    from pylint.lint import Run
     
-#     results = Run(['stack.py'], exit=False)
-#     expected = 8.5
-#     actual = results.linter.stats['global_note']
-#     assert actual >= expected
+    results = Run(['stack.py'], exit=False)
+    expected = 8.5
+    actual = results.linter.stats['global_note']
+    assert actual >= expected
