@@ -79,7 +79,7 @@ def test_equation_14():
 
 def test_bad_postfix():
     with pytest.raises(SyntaxError):
-        epf(" 7 9 * 7 + 5 6 * - 3 + 4 -+") #may need to come back to this.
+        epf(" 7 9 * 7 + 5 6 * - 3 + 4 -+") 
     with pytest.raises(ValueError):
         epf(None)
 
