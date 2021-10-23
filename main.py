@@ -1,5 +1,4 @@
 """stack module"""
-import pytest
 from stack import Stack
 def read_file():
     """read file function"""
@@ -54,8 +53,6 @@ def eval_postfix(postfix_expr):
     operand_stack = Stack()
     token_list = postfix_expr.split()
     for token in token_list:
-        # if len(token) > 1:
-        #     raise SyntaxError("invalid syntax")
         if token in "0123456789":
             operand_stack.push(float(token))
         else:

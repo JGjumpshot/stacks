@@ -28,5 +28,3 @@ class Stack:
     def __str__(self):
         """return string function"""
         return str(self._items)
-# print(my_stack)
-# print(dir(my_stack))
