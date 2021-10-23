@@ -24,7 +24,6 @@ class Stack:
         """check if the stack is empty"""
         if len(self._items) == 0:
             return True
-        # return False
     def __str__(self):
         """return string function"""
         return str(self._items)
